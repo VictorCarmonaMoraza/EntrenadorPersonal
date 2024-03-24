@@ -10,7 +10,7 @@
 function Crear_ListadoClientes(data) {
 
     var contenido = "";
-    contenido += "<table class ='table'>";
+    contenido += "<table id='tablaClientes'  class ='table'>";
     //Las cabeceras
     contenido += "<thead>";
     contenido += "<tr>";
@@ -41,4 +41,5 @@ function Crear_ListadoClientes(data) {
     contenido += "</table>";
 
     document.getElementById("listadoClientes").innerHTML = contenido;
+    $('#tablaClientes').DataTable();
 }

@@ -10,7 +10,7 @@
 function Crear_ListadoEntrenadoresHabilitados(data) {
 
     var contenido = "";
-    contenido += "<table class ='table'>";
+    contenido += "<table id='tablaEntrenadores' class ='table'>";
     //Las cabeceras
     contenido += "<thead>";
     contenido += "<tr>";
@@ -41,4 +41,5 @@ function Crear_ListadoEntrenadoresHabilitados(data) {
     contenido += "</table>";
 
     document.getElementById("tipoEntrenador").innerHTML = contenido;
+    $('#tablaEntrenadores').DataTable();
 }
