@@ -17,6 +17,7 @@ function Crear_ListadoClientes(data) {
         <th>Email</th>
         <th>EntrenadorID</th>
         <th>Telefono</th>
+        <th>Fecha de inicio</th>
         </tr>
      </thead>
 `;
@@ -31,6 +32,7 @@ function Crear_ListadoClientes(data) {
             <td>${fila.Email}</td>
             <td>${fila.EntrenadorID}</td>
             <td>${fila.Telefono}</td>
+            <td>${fila.FechaInicio}</td>
         </tr>
         `
     }

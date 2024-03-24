@@ -25,7 +25,10 @@ namespace EntrenadorPersonal.Controllers
                              clientes.Apellido,
                              clientes.Email,
                              clientes.EntrenadorID,
-                             clientes.Telefono
+                             clientes.Telefono,
+                             FechaInicio = clientes.FechaInicio.HasValue
+                                ? clientes.FechaInicio.Value.ToShortDateString()
+                                : null
                          };
 
             return Json(listar, JsonRequestBehavior.AllowGet);
