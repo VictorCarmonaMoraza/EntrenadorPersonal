@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntrenadorPersonal.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,9 @@ namespace EntrenadorPersonal.Controllers
         // GET: Main
         public ActionResult Index()
         {
+            Entrenadores usuarioLogeado = (Entrenadores)Session["Usuario"];
+            ViewData["nombreUsuario"] = usuarioLogeado.Nombre;
+
             return View();
         }
     }

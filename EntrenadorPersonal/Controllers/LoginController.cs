@@ -25,6 +25,19 @@ namespace EntrenadorPersonal.Controllers
                                where entrenador.habilitado == 1
                                && entrenador.Usuario == usuario && entrenador.Contraseña == password
                                select entrenador).Count();
+
+                if (registro ==1)
+                {
+                    var usuarioLogeado = (from entrenador in db.Entrenadores
+                                         where entrenador.habilitado == 1
+                                         && entrenador.Usuario == usuario && entrenador.Contraseña == password
+                                         select entrenador).First();
+
+                    //Guardamos en session el usuario loegeado
+                    Session["Usuario"] = usuarioLogeado;
+
+
+                }
                 return registro;
 
             }
