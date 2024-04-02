@@ -20,6 +20,12 @@ namespace EntrenadorPersonal.Controllers
             try
             {
                 //Accedemos a bbdd con usuario y contraseña
+                var db = new Models.BDEntrenadorPersonalDataContextDataContext();
+                var registro = (from entrenador in db.Entrenadores
+                               where entrenador.habilitado == 1
+                               && entrenador.Usuario == usuario && entrenador.Contraseña == password
+                               select entrenador).Count();
+                return registro;
 
             }
             catch (Exception ex)
