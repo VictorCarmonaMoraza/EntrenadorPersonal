@@ -41,5 +41,5 @@ function Crear_ListadoClientes(data) {
     contenido += "</table>";
 
     document.getElementById("listadoClientes").innerHTML = contenido;
-    $('#tablaClientes').DataTable();
+    $('#tablaClientes').DataTable({searching:false});
 }

@@ -41,5 +41,12 @@ function Crear_ListadoEntrenadoresHabilitados(data) {
     contenido += "</table>";
 
     document.getElementById("tipoEntrenador").innerHTML = contenido;
-    $('#tablaEntrenadores').DataTable();
+    $('#tablaEntrenadores').DataTable({ searching: false });
+}
+
+function BuscarEntrenador() {
+    var nombreEntrenador = document.getElementById("txtNombreEntrenador").value;
+    $.get("Entrenadores/FiltrarEntrenador/?nombreEntrenador=" + nombreEntrenador, function (data) {
+        Crear_ListadoEntrenadoresHabilitados(data);
+    })
 }

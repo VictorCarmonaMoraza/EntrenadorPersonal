@@ -2,9 +2,16 @@
 @{
     ViewBag.Title = "Index";
 }
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
+
 
 <h2>Entrenadores</h2>
-<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
+<div style="margin-top:10px">
+    <label>Ingrese el nombre del entrenador</label>
+    <input type="text" id="txtNombreEntrenador" />
+    <button class="btn btn-primary"  onclick="BuscarEntrenador()">Buscar</button>
+</div>
+
 
 <div id="tipoEntrenador">
 
@@ -15,4 +22,4 @@
 
 <script src="~/Scripts/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-<script src="~/Scripts/TipoEntrenador.js"></script>
+<script src="~/Scripts/Entrenadores.js"></script>
