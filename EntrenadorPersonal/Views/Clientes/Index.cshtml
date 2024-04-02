@@ -2,9 +2,15 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Clientes</h2>
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
+<h2>Clientes</h2>
+
+<div style="margin-top:10px">
+    <label>Ingrese el nombre del cliente</label>
+    <input type="text" id="txtNombreCliente" />
+    <button class="btn btn-primary" onclick="BuscarCliente()">Buscar</button>
+</div>
+
 <div id="listadoClientes">
 
 </div>

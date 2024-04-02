@@ -43,3 +43,10 @@ function Crear_ListadoClientes(data) {
     document.getElementById("listadoClientes").innerHTML = contenido;
     $('#tablaClientes').DataTable({searching:false});
 }
+
+function BuscarCliente() {
+    var nombreCliente = document.getElementById("txtNombreCliente").value;
+    $.get("Clientes/FiltrarClientes/?nombreCliente=" + nombreCliente, function (data) {
+        Crear_ListadoClientes(data);
+    })
+}
