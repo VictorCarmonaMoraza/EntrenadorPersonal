@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="BDEntrenadorPersonal">
+  <DataContextMoniker Name="/BDEntrenadorPersonalDataContext" />
+  <nestedChildShapes>
+    <classShape Id="f5042749-5665-4836-b6b0-b0d46df0eca1" absoluteBounds="1.25, 0.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/BDEntrenadorPersonalDataContext/Clientes" />
+      <nestedChildShapes>
+        <elementListCompartment Id="93faefa9-70c1-4e9c-a605-c6cdc8af87b6" absoluteBounds="1.2650000000000001, 1.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3815df4d-16fa-40b6-a31f-657cc11f6e2a" absoluteBounds="6.25, 2.5, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/BDEntrenadorPersonalDataContext/Entrenadores" />
+      <nestedChildShapes>
+        <elementListCompartment Id="40df6e3d-c65f-461a-847d-ac7dae35fcbd" absoluteBounds="6.265, 2.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.25 : 2.76524983723958); (3.25 : 2.76524983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BDEntrenadorPersonalDataContext/Entrenadores/Entrenadores_Clientes" />
+      <nodes>
+        <classShapeMoniker Id="3815df4d-16fa-40b6-a31f-657cc11f6e2a" />
+        <classShapeMoniker Id="f5042749-5665-4836-b6b0-b0d46df0eca1" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="5d003fff-d836-4f77-a1cf-45174675ab5d" absoluteBounds="7.125, 0.5, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/BDEntrenadorPersonalDataContext/EvolucionClientes" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6709d0c1-11f4-43e7-b6c2-e071481bc0f7" absoluteBounds="7.14, 0.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.25 : 1.65625); (7.125 : 1.65625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BDEntrenadorPersonalDataContext/Clientes/Clientes_EvolucionClientes" />
+      <nodes>
+        <classShapeMoniker Id="f5042749-5665-4836-b6b0-b0d46df0eca1" />
+        <classShapeMoniker Id="5d003fff-d836-4f77-a1cf-45174675ab5d" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="5571c7eb-3444-4f4e-80ed-137dd61595ce" absoluteBounds="1.375, 3.75, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/BDEntrenadorPersonalDataContext/TipoEntrenador" />
+      <nestedChildShapes>
+        <elementListCompartment Id="40279ab0-fa3f-42c9-b004-8a20ef08ea2d" absoluteBounds="1.3900000000000001, 4.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.375 : 4.34699625651042); (6.25 : 4.34699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BDEntrenadorPersonalDataContext/TipoEntrenador/TipoEntrenador_Entrenadores" />
+      <nodes>
+        <classShapeMoniker Id="5571c7eb-3444-4f4e-80ed-137dd61595ce" />
+        <classShapeMoniker Id="3815df4d-16fa-40b6-a31f-657cc11f6e2a" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
