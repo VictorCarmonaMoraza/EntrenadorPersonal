@@ -6,10 +6,13 @@
 
     //Llamar a la funcion de login
     $.get("Login/ingresarLogin/?usuario=" + usuario + "&password=" + contra, function (data) {
-        if (data == 0) {
+        console.log(data);
+        if (data.toString() === "0") {
             alert("Usuario o contraseña incorrectos");
-        }else{
+        } else {
+            console.log("Cambiamos de pagina");
             document.location.href = "Main/Index";
         }
     });
 }
+

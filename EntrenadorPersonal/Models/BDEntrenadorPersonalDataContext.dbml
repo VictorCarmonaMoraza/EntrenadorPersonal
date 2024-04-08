@@ -1,17 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="EntrenadorPersonal" Class="BDEntrenadorPersonalDataContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=MSI;Initial Catalog=EntrenadorPersonal;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="EntrenadorPersonalConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Entrenadores" Member="Entrenadores">
-    <Type Name="Entrenadores">
-      <Column Name="EntrenadorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Nombre" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Apellido" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Especialidad" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Telefono" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="Usuario" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Contraseña" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="habilitado" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Entrenadores_Clientes" Member="Clientes" ThisKey="EntrenadorID" OtherKey="EntrenadorID" Type="Clientes" />
+  <Table Name="dbo.TipoEntrenador" Member="TipoEntrenador">
+    <Type Name="TipoEntrenador">
+      <Column Name="TipoEntrenadorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="TipoEntrenador_Entrenadores" Member="Entrenadores" ThisKey="TipoEntrenadorID" OtherKey="TipoEntrenadorID" Type="Entrenadores" />
     </Type>
   </Table>
   <Table Name="dbo.Clientes" Member="Clientes">
@@ -25,6 +18,22 @@
       <Column Name="EntrenadorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Clientes_EvolucionClientes" Member="EvolucionClientes" ThisKey="ClienteID" OtherKey="ClienteID" Type="EvolucionClientes" />
       <Association Name="Entrenadores_Clientes" Member="Entrenadores" ThisKey="EntrenadorID" OtherKey="EntrenadorID" Type="Entrenadores" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Entrenadores" Member="Entrenadores">
+    <Type Name="Entrenadores">
+      <Column Name="EntrenadorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Apellido" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Especialidad" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Contraseña" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="habilitado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoEntrenadorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Entrenadores_Clientes" Member="Clientes" ThisKey="EntrenadorID" OtherKey="EntrenadorID" Type="Clientes" />
+      <Association Name="TipoEntrenador_Entrenadores" Member="TipoEntrenador" ThisKey="TipoEntrenadorID" OtherKey="TipoEntrenadorID" Type="TipoEntrenador" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.EvolucionClientes" Member="EvolucionClientes">

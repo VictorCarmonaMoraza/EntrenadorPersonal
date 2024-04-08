@@ -30,12 +30,15 @@ namespace EntrenadorPersonal.Models
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
-    partial void InsertEntrenadores(Entrenadores instance);
-    partial void UpdateEntrenadores(Entrenadores instance);
-    partial void DeleteEntrenadores(Entrenadores instance);
+    partial void InsertTipoEntrenador(TipoEntrenador instance);
+    partial void UpdateTipoEntrenador(TipoEntrenador instance);
+    partial void DeleteTipoEntrenador(TipoEntrenador instance);
     partial void InsertClientes(Clientes instance);
     partial void UpdateClientes(Clientes instance);
     partial void DeleteClientes(Clientes instance);
+    partial void InsertEntrenadores(Entrenadores instance);
+    partial void UpdateEntrenadores(Entrenadores instance);
+    partial void DeleteEntrenadores(Entrenadores instance);
     partial void InsertEvolucionClientes(EvolucionClientes instance);
     partial void UpdateEvolucionClientes(EvolucionClientes instance);
     partial void DeleteEvolucionClientes(EvolucionClientes instance);
@@ -71,11 +74,11 @@ namespace EntrenadorPersonal.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Entrenadores> Entrenadores
+		public System.Data.Linq.Table<TipoEntrenador> TipoEntrenador
 		{
 			get
 			{
-				return this.GetTable<Entrenadores>();
+				return this.GetTable<TipoEntrenador>();
 			}
 		}
 		
@@ -84,6 +87,14 @@ namespace EntrenadorPersonal.Models
 			get
 			{
 				return this.GetTable<Clientes>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Entrenadores> Entrenadores
+		{
+			get
+			{
+				return this.GetTable<Entrenadores>();
 			}
 		}
 		
@@ -96,252 +107,84 @@ namespace EntrenadorPersonal.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Entrenadores")]
-	public partial class Entrenadores : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TipoEntrenador")]
+	public partial class TipoEntrenador : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _EntrenadorID;
+		private int _TipoEntrenadorID;
 		
-		private string _Nombre;
+		private string _Descripcion;
 		
-		private string _Apellido;
-		
-		private string _Especialidad;
-		
-		private string _Email;
-		
-		private string _Telefono;
-		
-		private string _Usuario;
-		
-		private string _Contraseña;
-		
-		private System.Nullable<int> _habilitado;
-		
-		private EntitySet<Clientes> _Clientes;
+		private EntitySet<Entrenadores> _Entrenadores;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnEntrenadorIDChanging(int value);
-    partial void OnEntrenadorIDChanged();
-    partial void OnNombreChanging(string value);
-    partial void OnNombreChanged();
-    partial void OnApellidoChanging(string value);
-    partial void OnApellidoChanged();
-    partial void OnEspecialidadChanging(string value);
-    partial void OnEspecialidadChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnTelefonoChanging(string value);
-    partial void OnTelefonoChanged();
-    partial void OnUsuarioChanging(string value);
-    partial void OnUsuarioChanged();
-    partial void OnContraseñaChanging(string value);
-    partial void OnContraseñaChanged();
-    partial void OnhabilitadoChanging(System.Nullable<int> value);
-    partial void OnhabilitadoChanged();
+    partial void OnTipoEntrenadorIDChanging(int value);
+    partial void OnTipoEntrenadorIDChanged();
+    partial void OnDescripcionChanging(string value);
+    partial void OnDescripcionChanged();
     #endregion
 		
-		public Entrenadores()
+		public TipoEntrenador()
 		{
-			this._Clientes = new EntitySet<Clientes>(new Action<Clientes>(this.attach_Clientes), new Action<Clientes>(this.detach_Clientes));
+			this._Entrenadores = new EntitySet<Entrenadores>(new Action<Entrenadores>(this.attach_Entrenadores), new Action<Entrenadores>(this.detach_Entrenadores));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EntrenadorID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int EntrenadorID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoEntrenadorID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TipoEntrenadorID
 		{
 			get
 			{
-				return this._EntrenadorID;
+				return this._TipoEntrenadorID;
 			}
 			set
 			{
-				if ((this._EntrenadorID != value))
+				if ((this._TipoEntrenadorID != value))
 				{
-					this.OnEntrenadorIDChanging(value);
+					this.OnTipoEntrenadorIDChanging(value);
 					this.SendPropertyChanging();
-					this._EntrenadorID = value;
-					this.SendPropertyChanged("EntrenadorID");
-					this.OnEntrenadorIDChanged();
+					this._TipoEntrenadorID = value;
+					this.SendPropertyChanged("TipoEntrenadorID");
+					this.OnTipoEntrenadorIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="NVarChar(100)")]
-		public string Nombre
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(255)")]
+		public string Descripcion
 		{
 			get
 			{
-				return this._Nombre;
+				return this._Descripcion;
 			}
 			set
 			{
-				if ((this._Nombre != value))
+				if ((this._Descripcion != value))
 				{
-					this.OnNombreChanging(value);
+					this.OnDescripcionChanging(value);
 					this.SendPropertyChanging();
-					this._Nombre = value;
-					this.SendPropertyChanged("Nombre");
-					this.OnNombreChanged();
+					this._Descripcion = value;
+					this.SendPropertyChanged("Descripcion");
+					this.OnDescripcionChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Apellido", DbType="NVarChar(100)")]
-		public string Apellido
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TipoEntrenador_Entrenadores", Storage="_Entrenadores", ThisKey="TipoEntrenadorID", OtherKey="TipoEntrenadorID")]
+		public EntitySet<Entrenadores> Entrenadores
 		{
 			get
 			{
-				return this._Apellido;
+				return this._Entrenadores;
 			}
 			set
 			{
-				if ((this._Apellido != value))
-				{
-					this.OnApellidoChanging(value);
-					this.SendPropertyChanging();
-					this._Apellido = value;
-					this.SendPropertyChanged("Apellido");
-					this.OnApellidoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Especialidad", DbType="NVarChar(100)")]
-		public string Especialidad
-		{
-			get
-			{
-				return this._Especialidad;
-			}
-			set
-			{
-				if ((this._Especialidad != value))
-				{
-					this.OnEspecialidadChanging(value);
-					this.SendPropertyChanging();
-					this._Especialidad = value;
-					this.SendPropertyChanged("Especialidad");
-					this.OnEspecialidadChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="NVarChar(15)")]
-		public string Telefono
-		{
-			get
-			{
-				return this._Telefono;
-			}
-			set
-			{
-				if ((this._Telefono != value))
-				{
-					this.OnTelefonoChanging(value);
-					this.SendPropertyChanging();
-					this._Telefono = value;
-					this.SendPropertyChanged("Telefono");
-					this.OnTelefonoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="NVarChar(50)")]
-		public string Usuario
-		{
-			get
-			{
-				return this._Usuario;
-			}
-			set
-			{
-				if ((this._Usuario != value))
-				{
-					this.OnUsuarioChanging(value);
-					this.SendPropertyChanging();
-					this._Usuario = value;
-					this.SendPropertyChanged("Usuario");
-					this.OnUsuarioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Contraseña", DbType="NVarChar(255)")]
-		public string Contraseña
-		{
-			get
-			{
-				return this._Contraseña;
-			}
-			set
-			{
-				if ((this._Contraseña != value))
-				{
-					this.OnContraseñaChanging(value);
-					this.SendPropertyChanging();
-					this._Contraseña = value;
-					this.SendPropertyChanged("Contraseña");
-					this.OnContraseñaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_habilitado", DbType="Int")]
-		public System.Nullable<int> habilitado
-		{
-			get
-			{
-				return this._habilitado;
-			}
-			set
-			{
-				if ((this._habilitado != value))
-				{
-					this.OnhabilitadoChanging(value);
-					this.SendPropertyChanging();
-					this._habilitado = value;
-					this.SendPropertyChanged("habilitado");
-					this.OnhabilitadoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Entrenadores_Clientes", Storage="_Clientes", ThisKey="EntrenadorID", OtherKey="EntrenadorID")]
-		public EntitySet<Clientes> Clientes
-		{
-			get
-			{
-				return this._Clientes;
-			}
-			set
-			{
-				this._Clientes.Assign(value);
+				this._Entrenadores.Assign(value);
 			}
 		}
 		
@@ -365,16 +208,16 @@ namespace EntrenadorPersonal.Models
 			}
 		}
 		
-		private void attach_Clientes(Clientes entity)
+		private void attach_Entrenadores(Entrenadores entity)
 		{
 			this.SendPropertyChanging();
-			entity.Entrenadores = this;
+			entity.TipoEntrenador = this;
 		}
 		
-		private void detach_Clientes(Clientes entity)
+		private void detach_Entrenadores(Entrenadores entity)
 		{
 			this.SendPropertyChanging();
-			entity.Entrenadores = null;
+			entity.TipoEntrenador = null;
 		}
 	}
 	
@@ -650,6 +493,353 @@ namespace EntrenadorPersonal.Models
 		{
 			this.SendPropertyChanging();
 			entity.Clientes = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Entrenadores")]
+	public partial class Entrenadores : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _EntrenadorID;
+		
+		private string _Nombre;
+		
+		private string _Apellido;
+		
+		private string _Especialidad;
+		
+		private string _Email;
+		
+		private string _Telefono;
+		
+		private string _Usuario;
+		
+		private string _Contraseña;
+		
+		private System.Nullable<int> _habilitado;
+		
+		private System.Nullable<int> _TipoEntrenadorID;
+		
+		private EntitySet<Clientes> _Clientes;
+		
+		private EntityRef<TipoEntrenador> _TipoEntrenador;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnEntrenadorIDChanging(int value);
+    partial void OnEntrenadorIDChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    partial void OnApellidoChanging(string value);
+    partial void OnApellidoChanged();
+    partial void OnEspecialidadChanging(string value);
+    partial void OnEspecialidadChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnTelefonoChanging(string value);
+    partial void OnTelefonoChanged();
+    partial void OnUsuarioChanging(string value);
+    partial void OnUsuarioChanged();
+    partial void OnContraseñaChanging(string value);
+    partial void OnContraseñaChanged();
+    partial void OnhabilitadoChanging(System.Nullable<int> value);
+    partial void OnhabilitadoChanged();
+    partial void OnTipoEntrenadorIDChanging(System.Nullable<int> value);
+    partial void OnTipoEntrenadorIDChanged();
+    #endregion
+		
+		public Entrenadores()
+		{
+			this._Clientes = new EntitySet<Clientes>(new Action<Clientes>(this.attach_Clientes), new Action<Clientes>(this.detach_Clientes));
+			this._TipoEntrenador = default(EntityRef<TipoEntrenador>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EntrenadorID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int EntrenadorID
+		{
+			get
+			{
+				return this._EntrenadorID;
+			}
+			set
+			{
+				if ((this._EntrenadorID != value))
+				{
+					this.OnEntrenadorIDChanging(value);
+					this.SendPropertyChanging();
+					this._EntrenadorID = value;
+					this.SendPropertyChanged("EntrenadorID");
+					this.OnEntrenadorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="NVarChar(100)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Apellido", DbType="NVarChar(100)")]
+		public string Apellido
+		{
+			get
+			{
+				return this._Apellido;
+			}
+			set
+			{
+				if ((this._Apellido != value))
+				{
+					this.OnApellidoChanging(value);
+					this.SendPropertyChanging();
+					this._Apellido = value;
+					this.SendPropertyChanged("Apellido");
+					this.OnApellidoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Especialidad", DbType="NVarChar(100)")]
+		public string Especialidad
+		{
+			get
+			{
+				return this._Especialidad;
+			}
+			set
+			{
+				if ((this._Especialidad != value))
+				{
+					this.OnEspecialidadChanging(value);
+					this.SendPropertyChanging();
+					this._Especialidad = value;
+					this.SendPropertyChanged("Especialidad");
+					this.OnEspecialidadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="NVarChar(15)")]
+		public string Telefono
+		{
+			get
+			{
+				return this._Telefono;
+			}
+			set
+			{
+				if ((this._Telefono != value))
+				{
+					this.OnTelefonoChanging(value);
+					this.SendPropertyChanging();
+					this._Telefono = value;
+					this.SendPropertyChanged("Telefono");
+					this.OnTelefonoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="NVarChar(50)")]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this.OnUsuarioChanging(value);
+					this.SendPropertyChanging();
+					this._Usuario = value;
+					this.SendPropertyChanged("Usuario");
+					this.OnUsuarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Contraseña", DbType="NVarChar(255)")]
+		public string Contraseña
+		{
+			get
+			{
+				return this._Contraseña;
+			}
+			set
+			{
+				if ((this._Contraseña != value))
+				{
+					this.OnContraseñaChanging(value);
+					this.SendPropertyChanging();
+					this._Contraseña = value;
+					this.SendPropertyChanged("Contraseña");
+					this.OnContraseñaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_habilitado", DbType="Int")]
+		public System.Nullable<int> habilitado
+		{
+			get
+			{
+				return this._habilitado;
+			}
+			set
+			{
+				if ((this._habilitado != value))
+				{
+					this.OnhabilitadoChanging(value);
+					this.SendPropertyChanging();
+					this._habilitado = value;
+					this.SendPropertyChanged("habilitado");
+					this.OnhabilitadoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoEntrenadorID", DbType="Int")]
+		public System.Nullable<int> TipoEntrenadorID
+		{
+			get
+			{
+				return this._TipoEntrenadorID;
+			}
+			set
+			{
+				if ((this._TipoEntrenadorID != value))
+				{
+					if (this._TipoEntrenador.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTipoEntrenadorIDChanging(value);
+					this.SendPropertyChanging();
+					this._TipoEntrenadorID = value;
+					this.SendPropertyChanged("TipoEntrenadorID");
+					this.OnTipoEntrenadorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Entrenadores_Clientes", Storage="_Clientes", ThisKey="EntrenadorID", OtherKey="EntrenadorID")]
+		public EntitySet<Clientes> Clientes
+		{
+			get
+			{
+				return this._Clientes;
+			}
+			set
+			{
+				this._Clientes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TipoEntrenador_Entrenadores", Storage="_TipoEntrenador", ThisKey="TipoEntrenadorID", OtherKey="TipoEntrenadorID", IsForeignKey=true)]
+		public TipoEntrenador TipoEntrenador
+		{
+			get
+			{
+				return this._TipoEntrenador.Entity;
+			}
+			set
+			{
+				TipoEntrenador previousValue = this._TipoEntrenador.Entity;
+				if (((previousValue != value) 
+							|| (this._TipoEntrenador.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TipoEntrenador.Entity = null;
+						previousValue.Entrenadores.Remove(this);
+					}
+					this._TipoEntrenador.Entity = value;
+					if ((value != null))
+					{
+						value.Entrenadores.Add(this);
+						this._TipoEntrenadorID = value.TipoEntrenadorID;
+					}
+					else
+					{
+						this._TipoEntrenadorID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TipoEntrenador");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Clientes(Clientes entity)
+		{
+			this.SendPropertyChanging();
+			entity.Entrenadores = this;
+		}
+		
+		private void detach_Clientes(Clientes entity)
+		{
+			this.SendPropertyChanging();
+			entity.Entrenadores = null;
 		}
 	}
 	

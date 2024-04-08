@@ -49,6 +49,5 @@ namespace EntrenadorPersonal.Controllers
 
             return Json(listar, JsonRequestBehavior.AllowGet);
         }
-
     }
 }

@@ -57,5 +57,8 @@ namespace EntrenadorPersonal.Controllers
 
             return Json(listar, JsonRequestBehavior.AllowGet);
         }
+
+        //Obtener los clientes por el id del entrenador
+
     }
 }
