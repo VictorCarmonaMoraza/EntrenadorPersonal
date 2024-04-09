@@ -16,7 +16,8 @@ namespace EntrenadorPersonal.Controllers
 
         public int ingresarLogin(string usuario,  string password)
         {
-            var respuesta = 0;
+            Session.Clear();
+            //var respuesta = 0;
             try
             {
                 //Accedemos a bbdd con usuario y contraseña
@@ -35,18 +36,19 @@ namespace EntrenadorPersonal.Controllers
 
                     //Guardamos en session el usuario loegeado
                     Session["Usuario"] = usuarioLogeado;
+                    return 1;
 
 
                 }
-                return registro;
+                return 0;
 
             }
             catch (Exception ex)
             {
-                return  respuesta = 0;
+                return  0;
             }
 
-            return respuesta;
+            return 0;
         }
     }
 }

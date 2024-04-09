@@ -77,6 +77,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function mostrarInformacionCliente(clientId) {
     console.log("Mostrando información para el cliente ID:", clientId);
+    // Redirect a una pagina para graficas
+    document.location.href = "/Graficos/Index";
+
     
 }
 
