@@ -20,51 +20,6 @@ function GetClientesPorEntrenador() {
     })
 }
 
-//function Crear_ListadoClientesPorEntrenador(data) {
-
-//    var contenido = "";
-//    contenido += "<table id='tablaClientes'  class ='table'>";
-
-//    contenido += `
-//    <thead>
-//        <tr>
-//        <th>Nombre</th>
-//        <th>Apellidos</th>
-//        <th>Email</th>
-//        <th>Telefono</th>
-//        <th>Fecha de inicio</th>
-//        <th>Acciones</th>
-//        </tr>
-//     </thead>
-//`;
-//    /*contenido += "<tbody class='table-group-divider' style='overflow-y: auto; height: 300px;'>";*/
-//    contenido += "<tbody class='table-group-divider' style='overflow-y: auto; height: 100px;'>";
-//    var fila;
-//    for (var i = 0; i < data.length; i++) {
-//        fila = data[i];
-//        contenido += `
-//                <tr data-client-id="${fila.ClienteID}">
-//            <td><span class="clickeableNombre" data-client-id="${fila.ClienteID}">${fila.Nombre}</span></td>
-//            <td>${fila.Apellido}</td>
-//            <td>${fila.Email}</td>
-//            <td>${fila.Telefono}</td>
-//            <td>${fila.FechaInicio}</td>
-//            <td>
-//            <i onclick="abrirModalPersonas(${fila.ClienteID})"  data-toggle="modal" class= 'btn btn-primary fas fa-edit'></i>
-//            <i onclick ='eliminarPersona(${fila.ClienteID})' class="btn btn-danger fas fa-trash"></i>
-//            <td>
-//        </tr>
-//        `
-//    }
-//    contenido += "</tbody>";
-
-//    contenido += "</table>";
-
-//    document.getElementById("listadoClientesPorEntrenador").innerHTML = contenido;
-//    $('#tablaClientes').DataTable({ searching: false });
-
-//}
-
 function Crear_ListadoClientesPorEntrenador(data) {
     var contenido = "";
     contenido += "<table id='tablaClientes' class='table'>";
@@ -231,10 +186,10 @@ function addEvolucionCliente(idFront) {
     //var musculo = document.getElementById("txtMusculo").value;
     //var comentario = document.getElementById("txtComentario").value;
 
-
+    limpiarCamposEvolucion();
     //Hacemos el modal visible
-
-    alert(idFront);
+    document.getElementById("txtClientId").value = idFront;
+    //alert(idFront);
     //limpiarModalPersona();
     ////Si el id viene vacio es que estamos agregando un elemento a la base de datos
     ////Si el id viene vacio(o undefined) con datos es que vamos a hacer una edicion
@@ -274,13 +229,47 @@ function eliminarPersona(idPersonaFront) {
 }
 
 function GuardarEvolucion() {
+
+    //limpiarCamposEvolucion();
     //Obtenemos todos los valores de los campos
-    /*var idCliente = document.getElementById("txtIdCliente").value;*/
-    var peso = document.getElementById('txtPeso').value;
-    var grasaCorporal = document.getElementById('txtGrasaCorporal').value;
+    var idCliente = document.getElementById("txtClientId").value;
+    var peso = parseFloat(document.getElementById('txtPeso').value);
+    var grasaCorporal = parseFloat(document.getElementById('txtGrasaCorporal').value);
     var comentario = document.getElementById('txtComentario').value;
-    var musculo = document.getElementById('txtMusculo').value;
+    var musculo = parseFloat(document.getElementById('txtMusculo').value);
     var fechaEvolucion = document.getElementById('txtFechaEvolucion').value;
+
+    //Monatmos el objeto que se enviara a la base de datos para montar la evolucion del cliente
+    var frmData = new FormData();
+    frmData.append("clienteID", idCliente);
+    frmData.append("peso", peso);
+    frmData.append("grasaCorporal", grasaCorporal);
+    frmData.append("musculo", musculo);
+    frmData.append("fechaEvolucion", fechaEvolucion);
+    frmData.append("comentarios", comentario);
+    console.log(frmData);
+
+    $.ajax({
+        type: "POST",
+        url: "/Clientes/AddEvolucionCliente",
+        data: frmData,
+        contentType: false,
+        processData: false,
+
+        success: function (data) {
+            if (data.success == 1) {
+                //Refrescamos tabla de clientes
+                //GetClientesPorEntrenador();
+                //limpiarCampos();
+                //cerrarFormulario();
+                document.getElementById("btnCerrar").click();
+            }
+            else {
+                alert("El usuario no se creo");
+                //llamarSweetAlertOK(nombre, 1)
+            }
+        }
+    })
 }
 
 function GuardarPersona() {

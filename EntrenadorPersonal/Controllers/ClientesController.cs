@@ -1,6 +1,7 @@
 ﻿using EntrenadorPersonal.Models;
 using System;
 using System.Linq;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace EntrenadorPersonal.Controllers
@@ -121,9 +122,33 @@ namespace EntrenadorPersonal.Controllers
             return Json(new { cliente.ClienteID }, JsonRequestBehavior.AllowGet);
         }
         
-        public void addEvolucionCliente(int clienteID)
+        public JsonResult AddEvolucionCliente(int clienteID, DateTime fechaEvolucion, double peso, double grasaCorporal, double musculo, string comentarios)
         {
+            var db = new Models.BDEntrenadorPersonalDataContextDataContext();
+            try
+            {
+                var nuevaEvolucionCliente = new EntrenadorPersonal.Models.EvolucionClientes
+                {
+                    ClienteID = clienteID,
+                    Fecha = fechaEvolucion,
+                    Peso = Convert.ToDecimal(peso),
+                    GrasaCorporal = Convert.ToDecimal(grasaCorporal),
+                    Musculo = Convert.ToDecimal(musculo),
+                    Comentarios = comentarios,
+                };
+                
 
+                db.EvolucionClientes.InsertOnSubmit(nuevaEvolucionCliente);
+                db.SubmitChanges();
+
+                // Devuelve 1 si se creó correctamente el cliente
+                return Json(new { success = 1 }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                // En caso de error, devuelve 0
+                return Json(new { success = 0, errorMessage = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
 
     }
