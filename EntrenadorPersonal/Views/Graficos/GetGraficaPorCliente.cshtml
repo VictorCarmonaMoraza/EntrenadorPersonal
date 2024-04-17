@@ -1,8 +1,20 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "GetGraficaPorCliente";
 }
+@model EntrenadorPersonal.Models.EvolucionClienteViewModel
 
+<h2>GetGraficaPorCliente</h2>
+
+<h2>Gráficas por Cliente</h2>
+
+@foreach (var evolucion in Model.Evoluciones)
+{
+    <p>Peso: @evolucion.Peso</p>
+    <p>Grasa Corporal: @evolucion.GrasaCorporal</p>
+    <p>Músculo: @evolucion.Musculo</p>
+    <hr />
+}
 
 <h2>Evolucion</h2>
 
@@ -10,7 +22,7 @@
     <div class="col-sm-6">
         <div class="card">
             <div class="card-header">
-                <h3>IMC-<span id="fechaIMC"></span></h3>
+                <h3>IMC</h3>
             </div>
             <div class="card-body">
                 <canvas id="graficoIMC" style="max-height:250px"></canvas>

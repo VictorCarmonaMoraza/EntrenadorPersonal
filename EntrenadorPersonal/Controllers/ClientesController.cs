@@ -1,4 +1,5 @@
 ﻿using EntrenadorPersonal.Models;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -58,7 +59,72 @@ namespace EntrenadorPersonal.Controllers
             return Json(listar, JsonRequestBehavior.AllowGet);
         }
 
-        //Obtener los clientes por el id del entrenador
+        //Crear clientes nuevos por el id del entrenador
+        public JsonResult CrearCliente(string nombre, string apellido, string email, string telefono,DateTime fechaInicio, int entrenadorID)
+        {
+            var db = new Models.BDEntrenadorPersonalDataContextDataContext();
+            try
+            {
+                var cliente = new EntrenadorPersonal.Models.Clientes
+                {
+                    Nombre = nombre,
+                    Apellido = apellido,
+                    Email = email,
+                    Telefono = telefono,
+                    FechaInicio = fechaInicio,
+                    EntrenadorID = entrenadorID
+                };
+
+                db.Clientes.InsertOnSubmit(cliente);
+                db.SubmitChanges();
+
+                // Devuelve 1 si se creó correctamente el cliente
+                return Json(new { success = 1 }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                // En caso de error, devuelve 0
+                return Json(new { success = 0, errorMessage = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        public JsonResult ActualizarCliente(int clienteID, string nombre, string apellido, string email, string telefono)
+        {
+            var db = new Models.BDEntrenadorPersonalDataContextDataContext();
+            var cliente = db.Clientes.FirstOrDefault(x => x.ClienteID == clienteID);
+
+            if (cliente != null)
+            {
+                cliente.Nombre = nombre;
+                cliente.Apellido = apellido;
+                cliente.Email = email;
+                cliente.Telefono = telefono;
+
+                db.SubmitChanges();
+            }
+
+            return Json(new { cliente.ClienteID }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult EliminarCliente(int clienteID)
+        {
+            var db = new Models.BDEntrenadorPersonalDataContextDataContext();
+            var cliente = db.Clientes.FirstOrDefault(x => x.ClienteID == clienteID);
+
+            if (cliente != null)
+            {
+                db.Clientes.DeleteOnSubmit(cliente);
+                db.SubmitChanges();
+            }
+
+            return Json(new { cliente.ClienteID }, JsonRequestBehavior.AllowGet);
+        }
+        
+        public void addEvolucionCliente(int clienteID)
+        {
+
+        }
 
     }
 }

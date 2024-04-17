@@ -3,20 +3,138 @@
     ViewBag.Title = "Index";
 
 }
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
 @Html.Hidden("idEntrenador", ViewData["idEntrenador"])
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
 <h2>Bienvenido @ViewData["nombreUsuario"] entrenador de @ViewData["TipoEntrenador"] </h2>
 
-<!--Cliente del entrenador-->
-@*<div style="margin-top:10px">
-    <label>Ingrese el nombre del cliente</label>
-    <input type="text" id="txtNombreCliente" />
-    <button class="btn btn-primary" onclick="BuscarCliente()">Buscar</button>
-</div>*@
-
 <div id="listadoClientesPorEntrenador">
 
 </div>
+
+<!--Boton para crear clientes nuevos-->
+<button type="button" class="btn btn-primary" id="mostrarFormulario">Nuevo Cliente</button>
+
+
+<form id="formularioCrearCliente" style="display: none">
+    <div class="row mt-4">
+        <div class="input-group mt-2">
+            <span class="input-group-text">Nombre</span>
+            <input type="text" id="txtNombre" class="form-control" required>
+        </div>
+
+        <div class="input-group mt-2">
+            <span class="input-group-text">Apellidos</span>
+            <input type="text" id="txtApellido" class="form-control" required>
+        </div>
+
+        <div class="input-group mt-2">
+            <span class="input-group-text">Email</span>
+            <input type="email" id="txtEmail" class="form-control" required>
+        </div>
+
+        <div class="input-group mt-2">
+            <span class="input-group-text">Teléfono</span>
+            <input type="number" id="txtTelefono" class="form-control" required>
+        </div>
+
+
+        <div class="input-group mt-2">
+            <span class="input-group-text">Fecha Inicio</span>
+            <input type="date" id="txtFechaInicio" class="form-control" required>
+        </div>
+
+
+        <div>
+            @*<button class="btn btn-primary mt-5" onclick="event.preventDefault(); CrearCliente()">Crear Cliente</button>*@
+            <button class="btn btn-primary mt-5" onclick="event.preventDefault();CrearCliente()" id="btnCrearCliente" disabled>Crear Cliente</button>
+        </div>
+    </div>
+</form>
+
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Evolucion Cliente</button>*@
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Evolucion del Cliente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mt-4">
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Peso</span>
+                        <input type="number" id="txtPeso" class="form-control limpiar" required>
+                    </div>
+
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Grasa Corporal</span>
+                        <input type="number" id="txtGrasaCorporal" class="form-control limpiar" required>
+                    </div>
+
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Comentario</span>
+                        <input type="text" id="txtComentario" class="form-control limpiar" required>
+                    </div>
+
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Musculo</span>
+                        <input type="number" id="txtMusculo" class="form-control limpiar" required>
+                    </div>
+
+
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Fecha</span>
+                        <input type="date" id="txtFechaEvolucion" class="form-control limpiar" required>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnCerrar" class="btn btn-secondary" data-dismiss="modal">
+                        Cerrar
+                    </button>
+                    <button type="button" onclick="GuardarEvolucion()" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+    </div>
+</div>
+
+<script>
+    // Función para verificar el estado de los campos y habilitar/deshabilitar el botón
+    function verificarCampos() {
+        var txtNombre = document.getElementById("txtNombre");
+        var txtApellido = document.getElementById("txtApellido");
+        var txtEmail = document.getElementById("txtEmail");
+        var txtTelefono = document.getElementById("txtTelefono");
+        var txtFechaInicio = document.getElementById("txtFechaInicio");
+        var btnCrearCliente = document.getElementById("btnCrearCliente");
+
+        if (txtNombre.value.trim() !== "" &&
+            txtApellido.value.trim() !== "" &&
+            txtEmail.value.trim() !== "" &&
+            txtTelefono.value.trim() !== "" &&
+            txtFechaInicio.value.trim() !== "") {
+            btnCrearCliente.disabled = false;
+        } else {
+            btnCrearCliente.disabled = true;
+        }
+    }
+
+    // Agregamos event listeners a los campos para verificar cuando cambian
+    document.getElementById("txtNombre").addEventListener("input", verificarCampos);
+    document.getElementById("txtApellido").addEventListener("input", verificarCampos);
+    document.getElementById("txtEmail").addEventListener("input", verificarCampos);
+    document.getElementById("txtTelefono").addEventListener("input", verificarCampos);
+    document.getElementById("txtFechaInicio").addEventListener("input", verificarCampos);
+
+    // Llamamos a verificarCampos para verificar el estado inicial de los campos
+    verificarCampos();
+</script>
+
+
 
 <script src="~/Scripts/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
