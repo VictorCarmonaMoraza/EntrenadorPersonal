@@ -7,7 +7,7 @@
 @Html.Hidden("idEntrenador", ViewData["idEntrenador"])
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
 <h2>Bienvenido @ViewData["nombreUsuario"] entrenador de @ViewData["TipoEntrenador"] </h2>
-
+<button type="button" class="btn btn-primary float-end" onclick="window.location.href = '/login'">Salir</button>
 <div id="listadoClientesPorEntrenador">
 
 </div>
@@ -51,9 +51,6 @@
         </div>
     </div>
 </form>
-
-@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Evolucion Cliente</button>*@
-
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

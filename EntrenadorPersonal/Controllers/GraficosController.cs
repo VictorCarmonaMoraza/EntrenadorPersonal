@@ -19,7 +19,7 @@ namespace EntrenadorPersonal.Controllers
         public JsonResult GetGraficaPorCliente(int clienteId)
             
         {
-            clienteId = 1;
+            //clienteId = 1;
             var db = new Models.BDEntrenadorPersonalDataContextDataContext();
 
             var listar = from evolucion in db.EvolucionClientes

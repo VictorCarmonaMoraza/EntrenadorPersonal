@@ -6,12 +6,6 @@
     });
 });
 
-//$(document).ready(function () {
-//    $("#mostrarFormulario").click(function () {
-//        $("#formularioCrearCliente").show(); // Mostrar el formulario al hacer clic en el botón
-//    });
-//});
-
 function GetClientesPorEntrenador() {
      let entrenador = document.getElementById("idEntrenador").value;
     $.get("GetClientesPorEntrenador/?entrenadorId=" + parseInt(entrenador), function (data) {
@@ -36,7 +30,6 @@ function Crear_ListadoClientesPorEntrenador(data) {
         </tr>
     </thead>
     `;
-    // Nota: La propiedad overflow-y debe aplicarse al contenedor de la tabla, no al tbody, para que funcione correctamente.
     contenido += "<tbody class='table-group-divider'>";
     var fila;
     for (var i = 0; i < data.length; i++) {
@@ -177,37 +170,9 @@ function cerrarFormulario() {
 }
 
 function addEvolucionCliente(idFront) {
-    //Inserrtamos titluo del modal
-    //document.getElementById("evolucionCliente").innerHTML = "Agregando Evolución Cliente"
-    ////Recupero todos los campos del formulario
-    //var idCliente = idFront;
-    //var fecha = document.getElementById("txtFecha").value;
-    //var grasa_corporal = document.getElementById("txtGrasaCorporal").value;
-    //var musculo = document.getElementById("txtMusculo").value;
-    //var comentario = document.getElementById("txtComentario").value;
-
     limpiarCamposEvolucion();
-    //Hacemos el modal visible
+    
     document.getElementById("txtClientId").value = idFront;
-    //alert(idFront);
-    //limpiarModalPersona();
-    ////Si el id viene vacio es que estamos agregando un elemento a la base de datos
-    ////Si el id viene vacio(o undefined) con datos es que vamos a hacer una edicion
-    //if (idFront != undefined) {
-    //    document.getElementById("tituloModalPersona").innerHTML = "Editando Persona"
-    //    $.get("Personas/recuperarInformacionPersona/?idPersona=" + idFront, function (respuestaServidor) {
-    //        document.getElementById("txtIdPersona").value = respuestaServidor[0].IIDPERSONA;
-    //        document.getElementById("txtNombre").value = respuestaServidor[0].NOMBRE;
-    //        document.getElementById("txtApPaterno").value = respuestaServidor[0].APPATERNO;
-    //        document.getElementById("txtApMaterno").value = respuestaServidor[0].APMATERNO;
-    //        document.getElementById("txtTelefono").value = respuestaServidor[0].TELEFONO;
-    //        document.getElementById("txtEmail").value = respuestaServidor[0].CORREO;
-    //        document.getElementById("txtFechaNacimiento").value = respuestaServidor[0].FECHANACIMIENTO;
-    //        document.getElementById("comboSexoPersonasFormulario").value = respuestaServidor[0].IIDSEXO;
-    //    })
-    //} else {
-    //    document.getElementById("tituloModalPersona").innerHTML = "Agregando  Persona"
-    //}
 }
 
 function eliminarPersona(idPersonaFront) {
